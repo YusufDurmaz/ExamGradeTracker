@@ -1,0 +1,47 @@
+﻿<Controls:MetroWindow x:Class="ExamGradeTracker.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:local="clr-namespace:ExamGradeTracker"
+                      xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      mc:Ignorable="d"
+                      Icon="pack://application:,,,/icon.ico"
+                      Title="Exam Grade Tracker" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <StackPanel>
+                <Label Padding="0" Margin="0,0,0,1">Student Name</Label>
+                <TextBox x:Name="txtStudentName" Width="200" Height="Auto" />
+            </StackPanel>
+
+            <Button Content="Create" Width="100" Height="Auto" Margin="10,16,0,0" Click="AddStudent_Click" Style="{StaticResource MahApps.Styles.Button.MetroSquare.Accent}"/>
+            <Button Content="Export as Excel" Width="150" Height="Auto" Margin="10,16,0,0" Click="ExportToExcel_Click" Style="{StaticResource MahApps.Styles.Button.MetroSquare.Accent}" />
+            <Button Content="Import from Excel" Width="150" Height="Auto" Margin="10,16,0,0" Click="ImportFromExcel_Click" Style="{StaticResource MahApps.Styles.Button.MetroSquare.Accent}" />
+        </StackPanel>
+
+        <DataGrid x:Name="StudentsGrid" Grid.Row="1" AutoGenerateColumns="False" Margin="10" ContextMenuOpening="StudentsGrid_ContextMenuOpening">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Student Name" Binding="{Binding StudentName}" Width="*"/>
+                <DataGridTextColumn Header="Average" Binding="{Binding Avarage}" Width="*"/>
+                <DataGridTemplateColumn Header="Grades" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding GradesString}" ToolTip="{Binding GradesString}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding GradesString, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Controls:MetroWindow>
