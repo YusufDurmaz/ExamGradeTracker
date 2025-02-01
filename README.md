@@ -11,7 +11,7 @@
 ### ✅ Export students as excel or import from excel
 ### ✅ Sorting students by their grades
 ### ✅ Good Design with MahApps.Metro
-### ✅ Small size app
+### ✅ Small size (17.4 MB)
 ### ❌ Only available in Windows
 
 
